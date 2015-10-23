@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using RestSharp;
-using Dapper;
+using Hangfire;
 
-namespace A7Dashboard
+namespace A7Dashboard.Hangfire
 {
-
-    public class MonitorCall
+    public static class HangfireConfig
     {
-      
-
+        
     }
-
-
-
 }

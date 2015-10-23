@@ -9,16 +9,16 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
 using RestSharp;
-
-
+using System.Net;
 
 namespace A7Dashboard.Infrastructure.Repositories
 {
     public class CallRepository : ICallRepository
     {
         //private IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-        //SqlConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
+
+        #region GetAll
         public IEnumerable<Call> GetAll()
         {
             using (SqlConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
@@ -30,52 +30,28 @@ namespace A7Dashboard.Infrastructure.Repositories
             }
 
         }
+        #endregion
 
-        public Call AddCall(Call call)
-        {
-            using (SqlConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                _db.Open();
-
-                string query = "INSERT INTO [dbo].[Call] ([StatusDescription], [DateCreated]) VALUES (@StatusDescription,@DateCreated)";
-                _db.Execute(query,
-                    new
-                    {
-                        call.StatusDescription,
-                        call.DateCreated
-                    });
-
-                _db.Close();
-            }
-
-            return call;
-        }
-
-
-
-
-
-
+        #region Find
         public Call Find(int id)
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-
-
+        #region Remove
         public void Remove(int id)
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Save
         public void Save(Call call)
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        public Call Update(Call call)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

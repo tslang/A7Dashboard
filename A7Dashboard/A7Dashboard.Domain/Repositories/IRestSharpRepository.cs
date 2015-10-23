@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace A7Dashboard.Domain.Repositories
 {
-    public interface ICallRepository
+    public interface IRestSharpRepository
     {
-        IEnumerable<Call> GetAll();
-        Call Find(int id);
-        void Remove(int id);
-
-        void Save(Call call);
-
+        IEnumerable<Call> GetClientResponse();
+        void AddClientResponse(Call call);
     }
 }

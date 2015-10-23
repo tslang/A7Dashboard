@@ -1,79 +1,82 @@
-﻿using System;
+﻿using A7Dashboard.Domain.Models;
+using A7Dashboard.Domain.Repositories;
+using A7Dashboard.Infrastructure.Repositories;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RestSharp;
-using A7Dashboard.Domain.Models;
 
 namespace A7Dashboard.Controllers.API
 {
     public class CallController : ApiController
     {
-        private RestClient _client;
+        private IRestSharpRepository _rs;
+        private ICallRepository _repo;
 
         public CallController()
         {
-            _client = new RestClient("https://api.github.com");
+            _rs = new RestSharpRepository();
+            _repo = new CallRepository();
         }
 
-        public string GetCall()
+        #region GetClientResponse
+        public IEnumerable<Call> GetClientResponse()
         {
-            var request = new RestRequest("/users/tslang/repos");
-            request.Method = Method.GET;
-            request.RequestFormat = DataFormat.Json;
-
-            var response = _client.Execute(request);
-            return response.Content;
+            return _rs.GetClientResponse();
         }
+        #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: api/Call
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET: api/Call/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
+        #region AddClientResponse
         // POST: api/Call
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        [HttpPost, Route("AddClientResponse")]
+        public void AddClientResponse(Call call)
+        {
+            if (ModelState.IsValid)
+            {
+                _rs.AddClientResponse(call);
+               
+            }
+            //return Ok();
+        }
+        #endregion
 
+        //#region GetAll
+        // GET: api/values
+        //[Route("api/Call/GetAll")]
+        //public IEnumerable<Call> GetAll()
+        //{
+        //    return _repo.GetAll();
+
+        //}
+        //#endregion
+
+        #region GetCallByID
+        // GET: api/Call/5
+        public Call Get(int id)
+        {
+            return null;
+        }
+        #endregion
+
+        #region PUT
         // PUT: api/Call/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+        #endregion
 
+        #region DELETE
         // DELETE: api/Call/5
-        //public void Delete(int id)
-        //{
-        //}
+        public void Delete(int id)
+        {
+        }
+        #endregion
+
     }
 }
