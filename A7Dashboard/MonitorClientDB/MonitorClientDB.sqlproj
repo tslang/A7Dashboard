@@ -57,16 +57,13 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables" />
-    <Folder Include="Stored Procedures" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Script.PostDeployment-SeedDB.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="Tables\Call.sql" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MonitorClientDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

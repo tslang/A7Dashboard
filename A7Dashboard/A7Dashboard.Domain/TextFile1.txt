@@ -1,0 +1,55 @@
+﻿using A7Dashboard.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace Pinger
+{
+    public class Application
+    {
+        public string Address { get; private set; }
+        public int TimeOut { get; private set; }
+        public int Interval { get; private set; }
+        //public HashSet<string> Tags { get; set; }
+        public string Name { get; private set; }
+        public virtual List<PingResult> PingResults { get; set; }
+
+        public Application(string name, string address, int timeout, int interval, IEnumerable<string> tags)
+        {
+            this.Name = name;
+            this.Address = address;
+            this.TimeOut = timeout;
+            this.Interval = interval;
+            //this.Tags = new HashSet<string>(tags);
+        }
+
+    }
+}
+
+
+    public class ApplicationRepository
+    {
+
+        internal SqlConnection Connection
+        {
+            get
+            {
+                return new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            }
+        }
+
+        public IEnumerable<Application> GetTargets()
+        {
+            using (IDbConnection cn = Connection)
+            {
+                cn.Open();
+                var targets = cn.Query<Application>("SELECT * FROM Application").ToList();
+                return targets;
+            }
+        }
+
+    }

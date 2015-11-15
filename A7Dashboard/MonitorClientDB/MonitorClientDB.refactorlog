@@ -7,4 +7,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CallId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3d374546-a722-49c0-bfeb-90b0e33d509e" ChangeDateTime="10/25/2015 03:05:40">
+    <Property Name="ElementName" Value="[dbo].[Application].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Application]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ApplicationId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="36fc7baf-be65-42d2-8edb-6336deed5229" ChangeDateTime="10/25/2015 03:08:32">
+    <Property Name="ElementName" Value="[dbo].[PingResult].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PingResultId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5c45102b-3ef4-48fd-8e49-117dd3500cc2" ChangeDateTime="10/25/2015 03:12:14">
+    <Property Name="ElementName" Value="[dbo].[FK_PingResult_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_dbo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a3701102-3ad0-4feb-8753-b528813e0675" ChangeDateTime="10/25/2015 03:12:27">
+    <Property Name="ElementName" Value="[dbo].[FK_dbo]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_dbo.PingResult]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bb169d70-5918-4460-b45a-4784d2c99997" ChangeDateTime="10/25/2015 03:13:25">
+    <Property Name="ElementName" Value="[dbo].[FK_dbo.PingResult]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_dbo.PingResult_dbo.Application.ApplicationId]" />
+  </Operation>
 </Operations>

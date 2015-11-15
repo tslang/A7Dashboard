@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 using Hangfire;
-using A7Dashboard.Domain.Repositories;
 using A7Dashboard.Infrastructure.Repositories;
 
 [assembly: OwinStartup(typeof(A7Dashboard.Startup))]
@@ -13,7 +12,7 @@ namespace A7Dashboard
 {
     public partial class Startup
     {
-        private IRestSharpRepository _rs = new RestSharpRepository();
+        private Monitor _mono = new Monitor();
 
         public void Configuration(IAppBuilder app)
         {
@@ -23,7 +22,7 @@ namespace A7Dashboard
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate(() => _rs.GetClientResponse(), Cron.Minutely());
+            RecurringJob.AddOrUpdate(() => _mono.SendPing(), Cron.Minutely());      
 
         }
     }

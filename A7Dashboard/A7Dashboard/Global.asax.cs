@@ -21,3 +21,10 @@ namespace A7Dashboard
         }
     }
 }
+
+// Application_Init()
+// Application_Start()
+// Session_Start()
+// Application_Error()
+// Session_End()
+// Application_End()
