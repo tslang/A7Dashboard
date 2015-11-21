@@ -1,23 +1,18 @@
 ﻿using A7Dashboard.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-using System.Net.NetworkInformation;
-using A7Dashboard.Domain.Repositories;
-using A7Dashboard.Infrastructure.Repositories;
-using RestSharp;
+using System.Web;
+using System.Configuration;
+using A7Dashboard.Hubs;
 
-
-namespace A7Dashboard.Infrastructure.Repositories
+namespace A7Dashboard.Models
 {
-    public class PingResultRepository : IPingResultRepository
+    public class HubRepository
     {
+        private PingResultHub _hub = new PingResultHub();
         internal SqlConnection Connection
         {
             get
@@ -25,17 +20,6 @@ namespace A7Dashboard.Infrastructure.Repositories
                 return new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             }
         }
-
-        #region dependency_OnChange
-        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            if (e.Type == SqlNotificationType.Change)
-            {
-                GetAllPingResults();
-            }
-        }
-        #endregion
-
 
         public IEnumerable<PingResult> GetAllPingResults()
         {
@@ -79,41 +63,14 @@ namespace A7Dashboard.Infrastructure.Repositories
             }
         }
 
-
-
-        //public IEnumerable<PingResult> GetResults()
-        //{   
-        //    using (SqlConnection cn = Connection)
-        //    {
-        //        cn.Open();
-        //        var results = cn.Query<PingResult>("SELECT * FROM PingResult").ToList();
-        //        return results;
-        //    }
-        //}
-
-
-        public void AddResult(IRestResponse<PingResult> result)
+        #region dependency_OnChange
+        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {
-            using (SqlConnection cn = Connection)
+            if (e.Type == SqlNotificationType.Change)
             {
-                cn.Open();
-                const string query = "INSERT INTO [dbo].[PingResult]([StatusCode],[StatusDescription],[Server],[ResponseUri],[ResponseStatus]) VALUES (@StatusCode,@StatusDescription,@Server,@ResponseUri,@ResponseStatus)";
-                cn.Execute(query,
-                    new
-                    {
-                        StatusCode = result.StatusCode,
-                        StatusDescription = result.StatusDescription,
-                        Server = result.Server,
-                        ResponseUri = result.ResponseUri.OriginalString,
-                        ResponseStatus = result.ResponseStatus
-                    });
-                cn.Close();
+                _hub.SendNotification();
             }
         }
+        #endregion
     }
 }
-
-
-//    
-
-

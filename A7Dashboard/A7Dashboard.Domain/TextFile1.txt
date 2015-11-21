@@ -7,6 +7,68 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Status</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript""></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var result = $.connection.pingHub;
+
+            result.client.displayResult = function () {
+                getResult();
+            };
+
+            $.connection.hub.start();
+            getResult();
+        });
+
+        function getResult() {
+            var $tbl = $('#tblPingResult');
+            $.ajax({
+                url: '/api/values/Get',
+                type: 'GET',
+                datatype: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $tbl.empty();
+                        $tbl.append(' <tr><th>StatusCode</th><th>Status Description</th><th>Server</th><th>Response Uri</th><th>Response Status</th></tr>');
+                        var rows = [];
+                        for (var i = 0; i < data.length; i++) {
+                            rows.push(' <tr><td>' + data[i].StatusCode + '</td><td>' + data[i].StatusDescription + '</td><td>' + data[i].Server + '</td><td> ' + data[i].ResponseUri + '</td><td>' + data[i].ResponseStatus + '</td></tr>');
+                        }
+                        $tbl.append(rows.join(''));
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div> 
+        <table id="pingResult" style="text-align:center;margin-left:10px">
+
+        </table>
+    </div>
+</body>
+</html>
+
+
+
 namespace Pinger
 {
     public class Application

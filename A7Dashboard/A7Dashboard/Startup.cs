@@ -19,10 +19,11 @@ namespace A7Dashboard
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
 
+            app.MapSignalR();
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate(() => _mono.SendPing(), Cron.Minutely());      
+            RecurringJob.AddOrUpdate(() => _mono.SendPing(), Cron.Minutely());
 
         }
     }

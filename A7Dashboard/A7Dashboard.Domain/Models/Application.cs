@@ -9,19 +9,25 @@ namespace A7Dashboard.Domain.Models
 {
     public class Application
     {
-        public string Name { get; private set; }
-        public string Address { get; private set; }
-        public int Timeout { get; private set; }
-        public int Interval { get; private set; }  
-        //public virtual IList<PingResult> PingResults { get; set; } 
+        public int ApplicationID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Address2 { get; set; }
+        public int Timeout { get; set; }
+        public int Interval { get; set; }
 
-        //public virtual List<PingResult> PingResults { get; set; }
-
-
-        public Application(System.String name, System.String address, int timeout, int interval)
+        public Application()
         {
+
+        }
+
+
+        public Application(int id, string name, string address, string address2, int timeout, int interval)
+        {
+            this.ApplicationID = id;
             this.Name = name;
             this.Address = address;
+            this.Address2 = address2;
             this.Timeout = timeout;
             this.Interval = interval;
         }

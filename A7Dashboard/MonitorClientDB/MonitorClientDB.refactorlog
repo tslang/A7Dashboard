@@ -42,4 +42,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[FK_dbo.PingResult_dbo.Application.ApplicationId]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="8e40b53c-f5f9-4bae-a87a-f420950ac844" ChangeDateTime="11/17/2015 07:21:11">
+    <Property Name="ElementName" Value="[dbo].[PingResult].[Status]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ApplicationID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8e32d0b8-c244-489c-8933-79fd79c487a2" ChangeDateTime="11/17/2015 19:05:40">
+    <Property Name="ElementName" Value="[dbo].[Application].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Application]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ApplicationID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dfda87bf-4481-48c4-8bec-0eed99037882" ChangeDateTime="11/17/2015 19:06:28">
+    <Property Name="ElementName" Value="[dbo].[PingResult].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PingResult]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PingResultID" />
+  </Operation>
 </Operations>

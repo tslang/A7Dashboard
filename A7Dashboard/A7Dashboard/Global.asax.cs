@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +13,9 @@ namespace A7Dashboard
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+
+        string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,7 +23,14 @@ namespace A7Dashboard
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            SqlDependency.Start(con);       
         }
+
+        protected void Application_End()
+        {
+            SqlDependency.Stop(con);
+        }
+
     }
 }
 

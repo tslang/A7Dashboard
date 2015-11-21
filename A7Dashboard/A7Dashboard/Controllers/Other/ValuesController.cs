@@ -1,4 +1,7 @@
-﻿using System;
+﻿using A7Dashboard.Domain.Models;
+
+using A7Dashboard.Infrastructure.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,11 +13,12 @@ namespace A7Dashboard.Controllers
     [Authorize]
     public class ValuesController : ApiController
     {
+
         // GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //public IEnumerable<PingResult> Get()
+        //{
+        //    return _repo.GetResults();
+        //}
 
         // GET api/values/5
         public string Get(int id)
