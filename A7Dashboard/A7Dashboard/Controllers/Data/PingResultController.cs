@@ -19,7 +19,7 @@ namespace A7Dashboard.Controllers
             return View();
         }
 
-        public ActionResult Results()
+        public ActionResult GetPingResults()
         {
             var results = _repo.GetAllPingResults();
             return View(results);

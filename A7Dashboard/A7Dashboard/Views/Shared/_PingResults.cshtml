@@ -1,19 +1,10 @@
 ﻿@model IEnumerable<A7Dashboard.Domain.Models.PingResult>
 
-@{
-    ViewBag.Title = "Status";
-}
-
-<h2>Status</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PingResultId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.StatusCode)
         </th>
@@ -37,9 +28,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PingResultId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.StatusCode)
         </td>

@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Owin;
 using Hangfire;
 using A7Dashboard.Infrastructure.Repositories;
+using Microsoft.AspNet.SignalR;
 
 [assembly: OwinStartup(typeof(A7Dashboard.Startup))]
 
@@ -19,7 +20,7 @@ namespace A7Dashboard
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
 
-            app.MapSignalR();
+            app.MapSignalR(new HubConfiguration());
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 

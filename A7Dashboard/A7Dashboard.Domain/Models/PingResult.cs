@@ -44,6 +44,9 @@ namespace A7Dashboard.Domain.Models
         public DateTime DateCreated { get; set; }
 
 
+
+
+
         public PingResult()
         {
 

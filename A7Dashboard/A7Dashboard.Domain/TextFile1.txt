@@ -6,6 +6,40 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+@model IEnumerable<A7Dashboard.Domain.Models.PingResult>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @section Scripts{
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/script.js"></script>
+        }
+
+</head>
+<body>
+  <div class="row">
+      <div class="col-md-12">
+          <div id ="pingResultTable">
+              @Html.Partial("~/Views/Shared/_PingResults.cshtml", new List<A7Dashboard.Domain.Models.PingResult>())
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>
+
+
+
 
 
 @{

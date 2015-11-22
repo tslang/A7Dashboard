@@ -13,7 +13,7 @@ namespace A7Dashboard.Controllers
 {
     public class HomeController : Controller 
     {
-        private HubRepository _hub = new HubRepository();
+        private PingResultRepository _repo = new PingResultRepository();
 
         public ActionResult Index()
         {
@@ -24,7 +24,7 @@ namespace A7Dashboard.Controllers
         public ActionResult Status()
         {
 
-            return View(_hub.GetAllPingResults());
+            return PartialView("~/Views/Shared/_PingResults.cshtml", _repo.GetAllPingResults());
         }
 
 

@@ -2,62 +2,60 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Server)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResponseUri)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResponseStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div id="pingResultTable">
+            @Html.Partial("~/Views/Shared/_PingResults.cshtml", new List<A7Dashboard.Domain.Models.PingResult>())
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Server)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResponseUri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResponseStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PingResultId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PingResultId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PingResultId })
-        </td>
-    </tr>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var pingResultHub = $.connection.pingResultHub;
+
+            pingResultHub.client.addPingResultToPage = function () {
+                updatePingResult()
+
+            };
+
+
+            $.connection.hub.start().done(function () {
+                //pingResultHub.server.SendNotification
+                alert("connection started")
+                updatePingResult();
+            }).fail(function (e) {
+                alert(e);
+            });
+
+
+            function updatePingResult(pingResult) {
+                var tbl = $('#pingResultTable');
+                $.ajax({
+                    url: '/home/Status',
+                    contentType: 'application/html ; charset:utf-8',
+                    type: 'GET',
+                    dataType: 'html',
+                    cache: false
+                }).success(function (result) {
+                    tbl.empty().append(result);
+                }).error(function () {
+
+                });
+            }
+
+        })
+    </script>
 }
-
-</table>

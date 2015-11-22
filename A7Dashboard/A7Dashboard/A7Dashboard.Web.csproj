@@ -233,21 +233,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\Data\ApplicationController.cs" />
     <Compile Include="Controllers\Other\AccountController.cs" />
     <Compile Include="Controllers\API\ApplicationController.cs" />
     <Compile Include="Controllers\API\PingResultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Other\ValuesController.cs" />
-    <Compile Include="Controllers\PingResultController.cs" />
+    <Compile Include="Controllers\Data\PingResultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\PingResultHub.cs" />
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\HubRepository.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Other\AccountBindingModels.cs" />
+    <Compile Include="Models\Other\AccountViewModels.cs" />
+    <Compile Include="Models\PingResultHubUtility.cs" />
+    <Compile Include="Models\Other\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -313,9 +313,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\PingResult\Results.cshtml" />
-    <Content Include="Views\Home\Status.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_PingResults.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

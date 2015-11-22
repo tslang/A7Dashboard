@@ -29,10 +29,10 @@ namespace A7Dashboard.Controllers.API
 
 
         //GET: api/PingResult
-        public IEnumerable<PingResult> Get()
-        {
-            return _repo.GetAllPingResults();
-        }
+        //public IEnumerable<PingResult> Get()
+        //{
+        //    return _repo.GetAllPingResults();
+        //}
 
         // GET: api/PingResult/5
         //public string Get(int id)
@@ -41,11 +41,11 @@ namespace A7Dashboard.Controllers.API
         //}
 
         //POST: api/PingResult
-        [HttpPost]
-        public void Post(IRestResponse<PingResult> pingResult)
-        {
-            _repo.AddResult(pingResult);
-        }
+        //[HttpPost]
+        //public void Post(IRestResponse<PingResult> pingResult)
+        //{
+        //    _repo.AddResult(pingResult);
+        //}
 
         // PUT: api/PingResult/5
         //public void Put(int id, [FromBody]string value)
